@@ -1,51 +1,54 @@
 <template>
-    <Form>
         <div class="form-group mb-2">
-            <LabelComponent for="name">Name</LabelComponent>
-            <InputComponent type="text" class="form-control" id="name" placeholder="Enter your name" name="name" v-model="form.name"/>
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name" v-model="name">
         </div>
         <div class="form-group mb-2">
-            <LabelComponent for="last_name">Last name</LabelComponent>
-            <InputComponent type="text" class="form-control" id="last_name" placeholder="Enter your last name" name="last_name" v-model="form.last_name"/>
+            <label for="last_name">Last name</label>
+            <input type="text" class="form-control" id="last_name" placeholder="Enter your last name" v-model="last_name">
         </div>
         <div class="form-group mb-2">
-            <LabelComponent for="email">Email</LabelComponent>
-            <InputComponent type="email" class="form-control" id="email" placeholder="Enter email" name="email" v-model="form.email"/>
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" v-model="email">
         </div>
         <div class="form-group mb-2">
-            <LabelComponent for="password">Password</LabelComponent>
-            <InputComponent type="password" class="form-control" id="password" placeholder="Password" name="password" v-model="form.password"/>
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" v-model="password">
         </div>
-        <Button type="submit" class="btn btn-primary">
-            {{ processing ? "Please, wait" : "Register" }}
-        </Button>
-    </Form>
+        <button @click.prevent="register" type="submit" class="btn btn-primary">
+            Register
+        </button>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import Form from '../../components/Form.vue';
-import InputComponent from '../../components/InputComponent.vue';
-import Button from '../../components/Button.vue';
-import LabelComponent from '../../components/LabelComponent.vue';
 import axios from 'axios';
 
 export default defineComponent({
-    components: {
-        Form, InputComponent, Button, LabelComponent
-    },
-
     data() {
         return {
-            form: {
-                name: '',
-                last_name: '',
-                email: '',
-                password: '',
-            },
-
-            processing: false
+            name: null,
+            last_name: null,
+            email: null,
+            password: null,
+        
         }
     },
+
+    methods: {
+        register(){
+            axios.post('/api/v1/register', {
+                name: this.name,
+                last_name: this.last_name,
+                email: this.email,
+                password: this.password
+            }).then(
+                this.name = null,
+                this.last_name = null,
+                this.email = null,
+                this.password = null
+            )
+        }
+    }
 });
 </script> 

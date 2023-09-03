@@ -5,6 +5,7 @@
                 <router-link class="navbar-brand" to="/">Home</router-link>
                 <router-link class="navbar-brand" to="/about">About</router-link>
                 <router-link class="navbar-brand" to="/blog">Blog</router-link>
+                <router-link class="navbar-brand" to="/people">People</router-link>
             </div>
             <div class="m-2">
                 <router-link class="navbar-brand" to="/login">Login</router-link>
@@ -13,12 +14,3 @@
         </div>
     </nav>
 </template>
-
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-
-});
-
-</script>

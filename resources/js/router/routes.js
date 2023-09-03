@@ -3,6 +3,7 @@ import Blog from '../pages/Blog.vue';
 import About from '../pages/About.vue';
 import Login from '../pages/auth/Login.vue';
 import Register from '../pages/auth/Register.vue';
+import People from '../pages/People.vue';
 
 const routes = [
     {
@@ -24,6 +25,10 @@ const routes = [
     {
         path: '/register',
         component: Register
+    },
+    {
+        path: '/people',
+        component: People
     }
 ];
 

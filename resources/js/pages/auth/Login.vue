@@ -1,33 +1,40 @@
 <template>
-    <Form>
         <div class="form-group mb-2">
-            <LabelComponent for="email">Email</LabelComponent>
-            <InputComponent type="email" class="form-control" id="email" placeholder="Enter email"/>
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" v-model="email">
         </div>
         <div class="form-group mb-2">
-            <LabelComponent for="password">Password</LabelComponent>
-            <InputComponent type="password" class="form-control" id="password" placeholder="Password"/>
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" v-model="password">
         </div>
-        <div class="form-group form-check mb-2">
-            <InputComponent type="checkbox" class="form-check-input" id="remember-me"/>
-            <LabelComponent class="form-check-label" for="remember-me">Remember me</LabelComponent>
-        </div>
-        <Button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary">
             Login
-        </Button>
-    </Form>
+        </button>
 </template>
 
 <script>
+import axios from 'axios';
 import { defineComponent } from 'vue';
-import Form from '../../components/Form.vue';
-import InputComponent from '../../components/InputComponent.vue';
-import Button from '../../components/Button.vue';
-import LabelComponent from '../../components/LabelComponent.vue';
+
 
 export default defineComponent({
-    components: {
-        Form, InputComponent, Button, LabelComponent
+    data(){
+        return {
+            email: null,
+            password: null,
+        }
     },
+
+    methods: {
+        login(){
+            axios.post('/api/v1/login', {
+                email: this.email,
+                password: this.password,
+            }).then(
+                this.email = null,
+                this.password = null,
+            )
+        }
+    }
 });
 </script> 

@@ -1,10 +1,11 @@
 <template>
-    <table class="table">
+    <!-- <table class="table">
         <thead>
             <tr>
               <th scope="col">id</th>
-              <th scope="col">title</th>
-              <th scope="col">body</th>
+              <th scope="col">name</th>
+              <th scope="col">last_name</th>
+              <th scope="col">age</th>
             </tr>
         </thead>
         <tbody>
@@ -14,7 +15,7 @@
                 <td>{{ post.body }}</td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
 </template>
 
 <script>
