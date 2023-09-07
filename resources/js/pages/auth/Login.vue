@@ -7,7 +7,7 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" placeholder="Password" v-model="password">
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button @click.prevent="login" type="submit" class="btn btn-primary">
             Login
         </button>
 </template>
@@ -27,13 +27,17 @@ export default defineComponent({
 
     methods: {
         login(){
-            axios.post('/api/v1/login', {
-                email: this.email,
-                password: this.password,
-            }).then(
-                this.email = null,
-                this.password = null,
-            )
+            axios.get('sanctum/csrf-cookie').then(() => {
+                axios.post('api/v1/login', {
+                    email: this.email,
+                    password: this.password
+                }).then(res => {
+                    localStorage.setItem('x_xsrf_token', res.config.headers['X-XSRF-TOKEN']);
+                    this.$router.push({name: 'blog'});
+                    this.email = '',
+                    this.password = ''
+                });
+            });
         }
     }
 });

@@ -38,4 +38,9 @@ class PersonController extends Controller
 
         return $person;
     }
+
+    public function destroy(Person $person)
+    {
+        $person->delete();
+    }
 }

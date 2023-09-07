@@ -1,35 +1,19 @@
-import Home from '../pages/Home.vue';
-import Blog from '../pages/Blog.vue';
-import About from '../pages/About.vue';
-import Login from '../pages/auth/Login.vue';
-import Register from '../pages/auth/Register.vue';
-import People from '../pages/People.vue';
-
 const routes = [
     {
-        path: '/',
-        component: Home
-    }, 
-    {
         path: '/blog',
-        component: Blog
-    },
-    {
-        path: '/about',
-        component: About
+        name: 'blog',
+        component: () => import('../pages/blog/Blog.vue'),
     },
     {
         path: '/login',
-        component: Login
+        name: 'login',
+        component: () => import('../pages/auth/Login.vue'),
     },
     {
         path: '/register',
-        component: Register
+        name: 'register',
+        component: () => import('../pages/auth/Register.vue'),
     },
-    {
-        path: '/people',
-        component: People
-    }
 ];
 
 export default routes;

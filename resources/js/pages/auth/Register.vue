@@ -25,29 +25,34 @@ import { defineComponent } from 'vue';
 import axios from 'axios';
 
 export default defineComponent({
+    
     data() {
         return {
             name: null,
             last_name: null,
             email: null,
             password: null,
-        
         }
     },
 
     methods: {
         register(){
-            axios.post('/api/v1/register', {
-                name: this.name,
-                last_name: this.last_name,
-                email: this.email,
-                password: this.password
-            }).then(
-                this.name = null,
-                this.last_name = null,
-                this.email = null,
-                this.password = null
-            )
+            axios.get('sanctum/csrf-token').then(res => {
+                axios.post('/api/v1/register', {
+                    name: this.name,
+                    last_name: this.last_name,
+                    email: this.email,
+                    password: this.password
+                }).then(res => {
+                    localStorage.setItem('x_xsrf_token', res.config.headers['X-XSRF-TOKEN']);
+
+                    this.name = '',
+                    this.last_name = '',
+                    this.email = '',
+                    this.password = ''
+
+                });
+            });
         }
     }
 });
