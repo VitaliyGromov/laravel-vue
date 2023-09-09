@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
-namespace App\Http\Requests\Person;
+namespace App\Http\Requests\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PersonUpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +22,9 @@ class PersonUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'age' => ['required', 'integer', 'max:255'],
-            'job' => ['required', 'string', 'max:255'],
+            'title' => ['required', 'string', 'max:256'],
+            'body' => ['required', 'string'],
+            'images' => ['nullable', 'array'],
         ];
     }
 }
